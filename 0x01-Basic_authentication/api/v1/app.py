@@ -22,6 +22,9 @@ if AUTH_TYPE == 'auth':
 
 @app.before_request
 def before_request():
+    """
+    handles excluded urls
+    """
     if auth is None:
         pass
 
