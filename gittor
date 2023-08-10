@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#git committer
+echo "Add all, committing..."
+echo "$1"
+git add .
+git commit -m "$1"
+git push
