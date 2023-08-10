@@ -5,6 +5,7 @@ auth class for all authentication system
 from flask import request
 from typing import List, TypeVar
 
+
 class Auth:
     """
     authentication methods here
