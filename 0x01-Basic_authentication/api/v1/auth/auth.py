@@ -12,9 +12,22 @@ class Auth:
     """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
-        returns false
+        Returns True if path is None
+        Returns True if excluded_paths is None or empty
+        Returns True if path is not in excluded_paths
+        Returns False if path in excluded_paths
+        slash tolerant
         """
-        return False
+        if path is None or excluded_paths is None or excluded_paths == []:
+            return True
+
+        # Handling slash tolerance by ensuring the paths end with '/'
+        path = path.rstrip('/') + '/'
+
+        if path in excluded_paths:
+            return False
+
+        return True
 
     def authorization_header(self, request=None) -> str:
         """
