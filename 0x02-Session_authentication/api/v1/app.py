@@ -26,8 +26,6 @@ if AUTH_TYPE == 'session_auth':
     auth = SessionAuth()
 
 
-
-
 @app.before_request
 def before_request():
     """
