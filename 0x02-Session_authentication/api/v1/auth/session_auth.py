@@ -19,7 +19,7 @@ class SessionAuth(Auth):
         Args:
             user_id (str, optional): Defaults to None.
 
-        Returns (str): 
+        Returns (str):
             None if user_id is None
             None if user_id is not a string
             SessionID
