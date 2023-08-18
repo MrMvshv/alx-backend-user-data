@@ -41,6 +41,13 @@ class DB:
             User: The created User object
         """
         new_user = User(email=email, hashed_password=hashed_password)
-        self._session.add(new_user)
-        self._session.commit()
+        try:
+            self._session.add(new_user)
+            self._session.commit()
+            self._session.refresh(new_user)
+        except Exception as e:
+            self._session.rollback()
+            raise e
+        finally:
+            self._session.close()
         return new_user
