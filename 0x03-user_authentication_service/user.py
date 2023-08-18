@@ -12,6 +12,7 @@ Base = declarative_base()
 
 
 class User(Base):
+    """users class that maps to the db"""
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True, index=True)
