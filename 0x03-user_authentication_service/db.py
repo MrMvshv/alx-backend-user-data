@@ -84,7 +84,7 @@ class DB:
         locate user to update,
         update user’s attributes as passed in the args
         commit changes to database.
-        If argument that does not correspond to a user attribute, 
+        If argument that does not correspond to a user attribute,
         raise a ValueError.
         """
         user = self.find_user_by(id=user_id)
@@ -109,7 +109,3 @@ class DB:
             raise e
         finally:
             self._session.close()
-
-
-
-
