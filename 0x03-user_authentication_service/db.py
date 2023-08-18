@@ -78,3 +78,38 @@ class DB:
         except InvalidRequestError as error:
             self._session.rollback()
             raise error
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """
+        locate user to update,
+        update user’s attributes as passed in the args
+        commit changes to database.
+        If argument that does not correspond to a user attribute, 
+        raise a ValueError.
+        """
+        user = self.find_user_by(id=user_id)
+
+        if not user:
+            raise ValueError("User not found")
+
+        allowed_attributes = {
+            "email", "hashed_password", "session_id", "reset_token"
+        }
+
+        for attr, value in kwargs.items():
+            if attr in allowed_attributes:
+                setattr(user, attr, value)
+            else:
+                raise ValueError(f"Invalid user attribute: {attr}")
+
+        try:
+            self._session.commit()
+        except Exception as e:
+            self._session.rollback()
+            raise e
+        finally:
+            self._session.close()
+
+
+
+
