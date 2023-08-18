@@ -55,7 +55,7 @@ class DB:
             self._session.close()
         return new_user
 
-    def find_user_by(self, **kwargs):
+    def find_user_by(self, **kwargs) -> User:
         """Find a user by filtering with the provided keyword arguments.
 
         Args:
